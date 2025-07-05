@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #618BB7;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.companyName {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 56px;
+    padding-left: 8px;
+    color: white;
+}
