@@ -1,0 +1,8 @@
+.mainBody {
+    background-color: #95B5D8;
+    width: 100vh;
+    height: 100vh;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}

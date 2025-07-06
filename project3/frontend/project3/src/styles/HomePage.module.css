@@ -1,0 +1,11 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contentArea {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}

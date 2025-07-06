@@ -1,15 +1,14 @@
 import { useState } from 'react'
+import HomePage from './components/HomePage'
 import './App.css'
-import NavBar from './components/NavBar'
-import SideComponent from './components/SideComponent'
+import { BrowserRouter } from 'react-router'
 
 function App() {
 
   return (
-    <>
-      <NavBar />
-      <SideComponent />
-    </>
+    <BrowserRouter>
+      <HomePage />
+    </BrowserRouter>
   )
 }
 

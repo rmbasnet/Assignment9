@@ -32,9 +32,9 @@ CREATE TABLE `Artists` (
 
 SET autocommit=1;
 
-#
+
 # Populating data for table 'Artists'
-#
+
 INSERT INTO `Artists` (`ArtistID`,`FirstName`,`LastName`,`Nationality`,`Gender`,`YearOfBirth`,`YearOfDeath`,`Details`,`ArtistLink`) VALUES (1,'Pablo','Picasso','Spain','M',1881,1973,'Pablo Ruiz Picasso was a Spanish painter, draughtsman, and sculptor who lived most of his life in France. He is widely known for co-founding the Cubist movement and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d\'Avignon (1907) and Guernica (1937), a portrayal of the German bombing of Guernica during the Spanish Civil War.','http://en.wikipedia.org/wiki/Picasso');
 INSERT INTO `Artists` (`ArtistID`,`FirstName`,`LastName`,`Nationality`,`Gender`,`YearOfBirth`,`YearOfDeath`,`Details`,`ArtistLink`) VALUES (2,'Henri','Matisse','France','M',1869,1954,'Henri Matisse was a French artist, known for his use of colour and his fluid and original draughtsmanship. He was a draughtsman, printmaker, and sculptor, but is known primarily as a painter. Matisse is commonly regarded, along with Picasso and Marcel Duchamp, as one of the three artists who helped to define the revolutionary developments in the plastic arts in the opening decades of the 20th century, responsible for significant developments in painting and sculpture. Although he was initially labelled a Fauve (wild beast), by the 1920s he was increasingly hailed as an upholder of the classical tradition in French painting. His mastery of the expressive language of colour and drawing, displayed in a body of work spanning over a half-century, won him recognition as a leading figure in modern art','http://en.wikipedia.org/wiki/Matisse');
 INSERT INTO `Artists` (`ArtistID`,`FirstName`,`LastName`,`Nationality`,`Gender`,`YearOfBirth`,`YearOfDeath`,`Details`,`ArtistLink`) VALUES (5,'Jacques-Louis','David','France','M',1748,1825,'Jacques-Louis David was a French painter in the Neoclassical style, considered to be the preeminent painter of the era. In the 1780s his cerebral brand of history painting marked a change in taste away from Rococo frivolity toward a classical austerity and severity, heightened feeling chiming with the moral climate of the final years of the Ancien Regime.','http://en.wikipedia.org/wiki/Jacques-Louis_David');

@@ -1,9 +1,9 @@
-const express = require('express');
+import express from "express";
+import { getAllArt, getArtById } from "../controller/artController.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.status(200).send("you just fetched the routes");
-})
+router.get("/", getAllArt);
+router.get("/:id", getArtById);
 
-module.exports = router;
+export default router;
