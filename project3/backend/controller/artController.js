@@ -24,3 +24,23 @@ export async function getArtById(req, res) {
     }
 }
 
+export async function updateArtInformation(req, res) {
+    try {
+        const {
+            FirstName, LastName, YearOfWork, GalleryCountry, GalleryCity,
+            GalleryName, Medium, Cost, WikiLink, Description
+        } = req.body;
+
+        const updateArtInfo = await Art.findByIdAndUpdate(
+            req.params.id, { FirstName, LastName, YearOfWork, GalleryCountry, GalleryCity, GalleryName, Medium, Cost, WikiLink, Description },
+            { new: true },
+        );
+
+        if (!updateArtInfo) return res.status(404).json({ message: "unable to update art information" });
+        res.status(200).json(updateArtInfo);
+
+    } catch (error) {
+        console.error("Error in updateart controller", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}

@@ -4,11 +4,26 @@ import NavBar from './NavBar';
 import SideComponent from './SideComponent';
 import FormBody from './FormBody';
 import styles from '../styles/HomePage.module.css';
+import { Toaster } from 'react-hot-toast';
 
 function HomePage() {
     const [artData, setArtData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showForm, setShowForm] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
+    const [selectedArt, setSelectedArt] = useState(null);
+
+    const handleArtSelect = (art) => {
+        setSelectedArt(art);
+        setShowForm(true);
+    };
+
+    const handleFormSelect = (art) => {
+        setShowInfo(true);
+
+    }
+
 
     useEffect(() => {
         const fetchArt = async () => {
@@ -45,15 +60,22 @@ function HomePage() {
         );
     }
 
-    console.log(artData);
 
     // Main content only renders when data is available
     return (
         <div className={styles.pageContainer}>
+            <Toaster position="top-right" />
             <NavBar />
             <main className={styles.contentArea}>
-                <SideComponent artData={artData} />
-                <FormBody artData={artData} />
+                <SideComponent
+                    artData={artData}
+                    onArtSelect={handleArtSelect}
+                    onFormSelect={handleFormSelect}
+                />
+                {showForm && (
+                    <FormBody artData={selectedArt} showInfo={showInfo} />
+                )}
+
             </main>
         </div>
     );

@@ -1,75 +1,173 @@
-import React, { useEffect, useState } from 'react'
-import api from "../lib/axios";
-import { useParams } from 'react-router';
-
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import styles from '../styles/ArtForm.module.css'
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import api from "../lib/axios";
+import styles from '../styles/ArtForm.module.css';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function ArtForm({ artData }) {
-
-    const [art, setArt] = useState(null);
-
+    const [formData, setFormData] = useState({
+        FirstName: '',
+        LastName: '',
+        YearOfWork: '',
+        GallaryCountry: '',
+        GallaryCity: '',
+        GallaryName: '',
+        Medium: '',
+        Cost: '',
+        WikiLink: '',
+        Description: ''
+    });
+    const [saving, setSaving] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate();
 
+    // Initialize form data
     useEffect(() => {
-        const fetchArtInformation = async () => {
-            try {
-                const res = await api.get(`/art/${id}`);
-                setArt(res.data);
-            } catch (error) {
-                console.log("error in ARTFORM.JSZ, ", error);
-
-            }
+        if (artData) {
+            setFormData(artData);
         }
-        fetchArtInformation();
-    }, [id]);
+    }, [artData]);
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSave = async () => {
+        setSaving(true);
+
+        try {
+            const response = await api.put(`/art/${id}`, formData);
+            toast.success("Artwork updated successfully");
+        } catch (error) {
+            console.error("Update Error:", error);
+            toast.error('Failed to update information. ');
+        } finally {
+            setSaving(false);
+        }
+    };
 
     return (
         <div className={styles.formBody}>
-            <TextField id="standard-basic" label="Artist's First Name" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="FirstName"
+                label="Artist's First Name"
+                variant="standard"
+                value={formData.FirstName || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Artist's Last Name" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="LastName"
+                label="Artist's Last Name"
+                variant="standard"
+                value={formData.LastName || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Year Of Work" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="YearOfWork"
+                label="Year Of Work"
+                variant="standard"
+                value={formData.YearOfWork || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Gallery Country" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="GallaryCountry"
+                label="Gallery Country"
+                variant="standard"
+                value={formData.GallaryCountry || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Gallery City" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="GallaryCity"
+                label="Gallery City"
+                variant="standard"
+                value={formData.GallaryCity || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Gallery Name" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="GallaryName"
+                label="Gallery Name"
+                variant="standard"
+                value={formData.GallaryName || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Medidum" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="Medium"
+                label="Medium"
+                variant="standard"
+                value={formData.Medium || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Cost" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="Cost"
+                label="Cost"
+                variant="standard"
+                value={formData.Cost || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="WikiLink" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="WikiLink"
+                label="WikiLink"
+                variant="standard"
+                value={formData.WikiLink || ''}
+                onChange={handleChange}
+                fullWidth
+                margin="normal"
+            />
 
-            <TextField id="standard-basic" label="Description" variant="standard" defaultValue='PLACEHOLDER TEXT' />
-            <br />
-            <br />
+            <TextField
+                name="Description"
+                label="Description"
+                variant="standard"
+                value={formData.Description || ''}
+                onChange={handleChange}
+                multiline
+                rows={4}
+                fullWidth
+                margin="normal"
+            />
 
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSave}
+                disabled={saving}
+                sx={{ mt: 3 }}
+            >
+                {saving ? "Saving..." : "Save Changes"}
+            </Button>
         </div>
-    )
+    );
 }
 
-export default ArtForm
+export default ArtForm;
